@@ -1,189 +1,415 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en-US">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #0a0a0a;
-            color: #f0f0f0;
-            font-size: 15px;
-        }
-        
-        #wrapper {
-            display: flex;
-            min-height: 100vh;
-            overflow: hidden;
-        }
-        
-        #sidebar {
-            width: 220px;
-            background: #181818;
-            padding: 25px 0;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
-        }
-        
-        .menu-group {
-            margin-bottom: 25px;
-        }
-        
-        .menu-title {
-            padding: 12px 20px;
-            font-weight: 600;
-            color: #707070;
-            border-bottom: 1px solid #2a2a2a;
-            letter-spacing: 0.5px;
-        }
-        
-        .menu-item {
-            padding: 12px 25px;
-            cursor: pointer;
-            color: #c0c0c0;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            text-decoration: none;
-            display: block;
-            position: relative;
-            margin: 5px 0;
-        }
-        
-        .menu-item:hover {
-            background: #2a2a2a;
-            color: white;
-            transform: translateX(5px);
-        }
-        
-        .menu-item.active {
-            background: linear-gradient(90deg, #4CAF50, #2E7D32);
-            color: white;
-            box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
-        }
-        
-        .menu-item.active:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 3px;
-            background: white;
-        }
-        
-        #main {
-            flex: 1;
-            padding: 30px;
-            background: #1e1e1e;
-            overflow-y: auto;
-        }
-        
-        .content-section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .content-section.active {
-            display: block;
-        }
-        
-        .status-card {
-            background: #252525;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 6px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .status-card:hover {
-            transform: translateY(-3px);
-        }
-        
-        .status-title {
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #4CAF50;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .status-title:before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #4CAF50;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            background: #333;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 10px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
-        }
-    </style>
+ <title>Leafprod</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
-    <div id="wrapper">
-        <div id="sidebar">
-            <div class="menu-group">
-                <div class="menu-title">Navigation</div>
-                <div class="menu-item active" data-section="main">Main</div>
-                <a href="https://recubeim.leafprod.xyz" class="menu-item" target="_blank">Recubeim</a>
-                <a href="https://leafprod.xyz/cat" class="menu-item" target="_blank">Cats</a>
-                
-            </div>
-        </div>
-        
-        <div id="main">
-            <div id="main-section" class="content-section active">
-                <div class="status-card">
-                    <div class="status-title">Main</div>
-                    <p>Welcome to the Leafprod official site.</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuItems = document.querySelectorAll('.menu-item:not([href])');
-            
-            menuItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                    const sectionId = this.getAttribute('data-section');
-                    document.querySelectorAll('.content-section').forEach(section => {
-                        section.classList.remove('active');
-                    });
-                    document.getElementById(`${sectionId}-section`).classList.add('active');
-                });
-            });
-        });
-    </script>
+<body>
+<style>
+
+ body {
+  font-family: arial;
+  background-image: url('https://images4.alphacoders.com/745/thumb-1920-745704.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+ }
+
+ body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: -1;
+ }
+
+#zg {
+ margin-left: auto;
+ margin-right: auto;
+ color: White;
+ width: 710px;
+ padding: 10px;
+ background: rgba(47, 111, 47, 0.3);
+ backdrop-filter: blur(10px);
+ border: 1px solid black;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+#pr {
+ font-weight: bold;
+ color: white;
+ font-family: arial;
+}
+
+#tabs {
+ display: flex;
+ gap: 2px;
+}
+
+#tabs a {
+ padding: 4px 16px;
+ background: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+ border: 1px solid #000000;
+ font-size: 12px;
+ font-family: arial;
+ color: #d0d0d0;
+ text-decoration: none;
+ position: relative;
+ overflow: hidden;
+ cursor: pointer;
+}
+
+#tabs a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(47, 111, 47, 0.5), 
+        rgba(79, 159, 79, 0.7),
+        rgba(47, 111, 47, 0.5),
+        transparent
+    );
+    transition: left 0.5s ease;
+    z-index: 0;
+}
+
+#tabs a:hover::before {
+    left: 100%;
+}
+
+#tabs a:hover {
+ background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
+ color: white;
+ border-color: #2f6f2f;
+}
+
+#tabs a span {
+    position: relative;
+    z-index: 1;
+}
+
+#tabs a.active {
+ background: linear-gradient(to bottom, #2f6f2f, #1a4f2f);
+ color: white;
+ border-color: #4f9f4f;
+}
+ 
+#svo {
+ padding: 5px;
+ margin-left: auto;
+ margin-right: auto;
+ color: #f0f0f0;
+ height: 590px;
+ width: 710px;
+ background: rgba(34, 34, 34, 0.6);
+ backdrop-filter: blur(12px);
+ position: relative;
+ margin-top: 5px;
+ }
+ 
+ #wk {
+ color: #f5f5f5;
+ height: 587px;
+ width: 100%;
+ padding: 15px;
+ background: rgba(25, 25, 25, 0.5);
+ backdrop-filter: blur(5px);
+ display: block;
+ box-sizing: border-box;
+ overflow-y: auto;
+ opacity: 1;
+ transition: opacity 0.3s ease;
+ }
+ 
+ #cl {
+ color: #f5f5f5;
+ height: 587px;
+ width: 100%;
+ padding: 15px;
+ background: rgba(25, 25, 25, 0.5);
+ backdrop-filter: blur(5px);
+ display: block;
+ box-sizing: border-box;
+ overflow-y: auto;
+ opacity: 0;
+ transition: opacity 0.3s ease;
+ pointer-events: none;
+ position: absolute;
+ top: 5px;
+ left: 5px;
+ right: 5px;
+ bottom: 5px;
+ width: calc(100% - 10px);
+ }
+
+#end {
+ padding: 5px;
+ margin-left: auto;
+ margin-right: auto;
+ color: #b0b0b0;
+ height: 13px;
+ width: 710px;
+ background: rgba(41, 41, 41, 0.7);
+ backdrop-filter: blur(8px);
+ font-size: 13px;
+ margin-top: 5px;
+ text-align: center;
+ line-height: 13px;
+ }
+ 
+ hr {
+ border-color: #414141;
+ margin: 15px 0;
+ }
+
+#wk::-webkit-scrollbar, #cl::-webkit-scrollbar {
+ width: 12px;
+ }
+ 
+#wk::-webkit-scrollbar-track, #cl::-webkit-scrollbar-track {
+ background: #1a1a1a;
+ border-left: 1px solid #000;
+ }
+ 
+#wk::-webkit-scrollbar-thumb, #cl::-webkit-scrollbar-thumb {
+ background: linear-gradient(to bottom, #2f6f2f, #1a4f2f);
+ border: 1px solid #000;
+ border-radius: 6px;
+ }
+ 
+#wk::-webkit-scrollbar-thumb:hover, #cl::-webkit-scrollbar-thumb:hover {
+ background: linear-gradient(to bottom, #3f8f3f, #2a6f2f);
+ }
+
+.project-btn {
+    background: linear-gradient(to bottom, #2a2a2a, #1a1a2a);
+    border: 1px solid #000000;
+    color: #d0d0d0;
+    padding: 6px 20px;
+    margin: 8px 0;
+    font-size: 12px;
+    font-family: arial;
+    cursor: pointer;
+    width: auto;
+    display: inline-block;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.project-btn {
+    background: linear-gradient(to bottom, #2f6f2f, #1a4f2f);
+    border: 1px solid #000000;
+    color: white;
+    padding: 6px 20px;
+    margin: 8px 0;
+    font-size: 12px;
+    font-family: arial;
+    cursor: pointer;
+    width: auto;
+    display: inline-block;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.project-btn:hover {
+    background: linear-gradient(to bottom, #3f8f3f, #2a6f2f);
+    border-color: #4f9f4f;
+    transform: translateY(-1px);
+}
+
+.project-btn:active {
+    transform: translateY(0);
+}
+
+.project-btn:focus {
+    outline: none;
+}
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-left: 1px solid #2a2a2a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #3a7a3a, #2a6a2a);
+    border-radius: 5px;
+    border: 1px solid #1a4a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #4a9a4a, #3a8a3a);
+}
+
+::-webkit-scrollbar-corner {
+    background: #1a1a1a;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #3a7a3a #1a1a1a;
+}
+
+</style>
+
+<script>
+let currentTab = 'main';
+let isSwitching = false;
+
+function switchTab(tabName, event) {
+    if (isSwitching) return;
+    isSwitching = true;
+    
+    const wk = document.getElementById('wk');
+    const cl = document.getElementById('cl');
+    const tabs = document.querySelectorAll('#tabs a');
+    
+    tabs.forEach(tab => tab.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    if (tabName === 'main') {
+        cl.style.opacity = '0';
+        cl.style.pointerEvents = 'none';
+        
+        setTimeout(() => {
+            wk.style.display = 'block';
+            setTimeout(() => {
+                wk.style.opacity = '1';
+                wk.style.pointerEvents = 'auto';
+                cl.style.display = 'none';
+                currentTab = 'main';
+                isSwitching = false;
+            }, 50);
+        }, 150);
+        
+    } else if (tabName === 'other') {
+        wk.style.opacity = '0';
+        wk.style.pointerEvents = 'none';
+        
+        setTimeout(() => {
+            cl.style.display = 'block';
+            setTimeout(() => {
+                cl.style.opacity = '1';
+                cl.style.pointerEvents = 'auto';
+                wk.style.display = 'none';
+                currentTab = 'other';
+                isSwitching = false;
+            }, 50);
+        }, 150);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('#tabs a').classList.add('active');
+    document.getElementById('cl').style.display = 'none';
+    document.getElementById('wk').style.opacity = '1';
+    document.getElementById('wk').style.pointerEvents = 'auto';
+});
+</script>
+
+<DIV id='zg'>
+    <div id='pr'>Leafprod</div>
+    <div id="tabs">
+        <a href='#' onclick="switchTab('main', event)"><span>Main</span></a>
+        <a href='#' onclick="switchTab('other', event)"><span>Basement</span></a>
+    </div>
+</div>
+	
+	
+<div id=svo>
+    <div id=wk>
+        Welcome to the official <strong>Leafprod</strong> site :)
+        <hr>
+        We have a few projects:
+        <hr>
+<button class="project-btn" onclick="window.open('https://recubeim.leafprod.xyz', '_blank')">Recubeim</button><br>
+You can download recubeim only from itch.io !!<br><br>
+<button class="project-btn" onclick="window.open('https://leafprod.xyz/cat', '_blank')">Cats</button><br>
+<hr>
+
+<center>
+    <span style="color:#2f6f2f;">Your ideas, art, music, games. All are welcome here :D</span><br>
+    <span style="color:#2f6f2f;">Don't be shy. This place is made for you.</span>
+</center>
+
+<hr>
+    </div>
+    
+    <div id=cl>	
+<strong>What's going on here?</strong><br>
+This site is made by Elliktronic. Everything is free and with love.<br>
+
+<hr>
+
+<strong>Can I copy stuff?</strong><br>
+Yeah, but say thanks or drop a link back to us<br>
+
+<hr>
+
+<strong>Are you spying on me?</strong><br>
+NEVER. No cookies, no trackers, no magic.<br>
+
+<hr>
+
+<strong>License:</strong><br>
+All soft by Leafprod is freeware. Play & use as much as you want.<br>
+Source code available upon request, just ask! (Just credit us if you share/modify.)<br>
+Yeah, source code of this website is open :)<br>
+
+<hr>
+
+<strong>Language:</strong><br>
+Mainly Russian community, but everyone is welcome.<br>
+Всем приве
+
+<hr>
+
+<center>
+    <span style="color:#2f6f2f;">You're one of us. Make yourself at home :)</span>
+</center>
+
+<hr>
+
+<strong>Follow us:</strong><br>
+<br>
+<a href="https://discord.gg/wR6UDVgVbP" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #d0d0d0; text-decoration: none; margin-right: 20px;">
+    <svg width="20" height="20" viewBox="0 0 512 365.467" style="fill: #5865F2;">
+        <path d="M378.186 365.028s-15.794-18.865-28.956-35.099c57.473-16.232 79.41-51.77 79.41-51.77-17.989 11.846-35.099 20.182-50.454 25.885-21.938 9.213-42.997 14.917-63.617 18.866-42.118 7.898-80.726 5.703-113.631-.438-25.008-4.827-46.506-11.407-64.494-18.867-10.091-3.947-21.059-8.774-32.027-14.917-1.316-.877-2.633-1.316-3.948-2.193-.877-.438-1.316-.878-1.755-.878-7.898-4.388-12.285-7.458-12.285-7.458s21.06 34.659 76.779 51.331c-13.163 16.673-29.395 35.977-29.395 35.977C36.854 362.395 0 299.218 0 299.218 0 159.263 63.177 45.633 63.177 45.633 126.354-1.311 186.022.005 186.022.005l4.388 5.264C111.439 27.645 75.461 62.305 75.461 62.305s9.653-5.265 25.886-12.285c46.945-20.621 84.236-25.885 99.592-27.64 2.633-.439 4.827-.878 7.458-.878 26.763-3.51 57.036-4.387 88.624-.878 41.68 4.826 86.43 17.111 132.058 41.68 0 0-34.66-32.906-109.244-55.281l6.143-7.019s60.105-1.317 122.844 45.628c0 0 63.178 113.631 63.178 253.585 0-.438-36.854 62.739-133.813 65.81l-.001.001zm-43.874-203.133c-25.006 0-44.75 21.498-44.75 48.262 0 26.763 20.182 48.26 44.75 48.26 25.008 0 44.752-21.497 44.752-48.26 0-26.764-20.182-48.262-44.752-48.262zm-160.135 0c-25.008 0-44.751 21.498-44.751 48.262 0 26.763 20.182 48.26 44.751 48.26 25.007 0 44.75-21.497 44.75-48.26.439-26.763-19.742-48.262-44.75-48.262z"/>
+    </svg>
+    Discord
+</a>
+
+<a href="https://bsky.app/profile/leafprod.bsky.social" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #d0d0d0; text-decoration: none;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Bluesky_Logo_White.svg/1280px-Bluesky_Logo_White.svg.png" width="18" height="18" style="filter: brightness(0) invert(1);">
+    Bluesky
+</a>
+
+    </div>
+</div>
+	
+<div id=end>
+    <center><del>not</del> Protected * 2026</center>
+</div>
+	
 </body>
 </html>
